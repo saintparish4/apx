@@ -1,0 +1,200 @@
+# ============================================
+# Foundry / Solidity
+# ============================================
+Core/cache/
+Core/out/
+Core/lib/
+Core/broadcast/
+Core/.gas-snapshot
+Core/*.log
+
+# ============================================
+# Go Backend
+# ============================================
+backend/bin/
+backend/tmp/
+backend/*.exe
+backend/*.exe~
+backend/*.dll
+backend/*.so
+backend/*.dylib
+backend/*.test
+backend/*.out
+backend/vendor/
+
+# ============================================
+# Node.js / Frontend
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+dist/
+dist-ssr/
+*.local
+.next/
+.nuxt/
+.cache/
+.vite/
+.turbo/
+
+# Frontend build outputs
+frontend/node_modules/
+frontend/dist/
+frontend/.next/
+frontend/build/
+frontend/out/
+
+# ============================================
+# Environment Variables
+# ============================================
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# ============================================
+# Docker
+# ============================================
+docker/data/
+*.dockerignore
+
+# ============================================
+# IDE / Editor
+# ============================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# Operating System
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# Logs and Databases
+# ============================================
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+
+# ============================================
+# Testing
+# ============================================
+coverage/
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+test-results/
+coverage.out
+
+# ============================================
+# Miscellaneous
+# ============================================
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*~.nib
+local.properties
+.loadpath
+.recommenders
+.project
+.classpath
+.settings/
+.buildpath
+.target
+.tern-project
+.factorypath
+.springBeans
+
+# Secrets and keys
+*.pem
+*.key
+*.cert
+secrets/
+
+# Compiler files
+cache/
+out/
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
