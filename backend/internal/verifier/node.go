@@ -323,8 +323,12 @@ func (n *Node) checkAmountReasonableness(data *domain.ClaimData) (bool, string) 
 		return true, "" // Already checked in checkAmount
 	}
 
+	// Guard against division by zero when no procedure codes provided
+	if len(data.ProcedureCodes) == 0 {
+		return true, "" // Already checked in checkProcedureCodes
+	}
+
 	// Simple heuristic: flag if amount is unusually high for number of procedures
-	// TODO: Add guard for empty ProcedureCodes slice to prevent division by zero panic
 	avgPerProcedure := amount / float64(len(data.ProcedureCodes))
 
 	// Flag if average is over $10k per procedure (very rough heuristic)

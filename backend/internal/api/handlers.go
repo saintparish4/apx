@@ -2,16 +2,18 @@ package api
 
 import (
 	"context"
+	"encoding/hex"
 	"encoding/json"
+	"io"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog/log"
-	"github.com/saintparish4/apx/internal/ipfs"
 	"github.com/saintparish4/apx/internal/domain"
 	"github.com/saintparish4/apx/internal/ethereum"
+	"github.com/saintparish4/apx/internal/ipfs"
 	"github.com/saintparish4/apx/internal/verifier"
 )
 
@@ -77,7 +79,14 @@ func (h *Handler) SubmitClaim(c *gin.Context) {
 	}
 
 	// Calculate data hash
-	claimDataBytes, _ := json.Marshal(req.ClaimData)
+	claimDataBytes, err := json.Marshal(req.ClaimData)
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to marshal claim data")
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Failed to process claim data",
+		})
+		return
+	}
 	dataHash := ethereum.HashClaimData(claimDataBytes)
 
 	// TODO: Submit claim to blockchain
@@ -87,7 +96,7 @@ func (h *Handler) SubmitClaim(c *gin.Context) {
 	resp := SubmitClaimResponse{
 		ClaimID:    "", // Will be set after blockchain submission
 		IPFSCID:    ipfsCid,
-		DataHash:   "0x" + string(dataHash[:]),
+		DataHash:   "0x" + hex.EncodeToString(dataHash[:]),
 		GatewayURL: h.ipfsService.GetGatewayURL(ipfsCid),
 	}
 
@@ -183,6 +192,13 @@ func (h *Handler) ValidateClaim(c *gin.Context) {
 		})
 		return
 	}
+
+	if result == nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Validation returned no result",
+		})
+		return
+	}
 	c.JSON(http.StatusOK, result)
 }
 
@@ -269,7 +285,7 @@ func (h *Handler) GetStats(c *gin.Context) {
 
 	// Get block number
 	blockNumber, err := h.ethService.GetBlockNumber(ctx)
-	if err != nil {
+	if err == nil {
 		stats["current_block"] = blockNumber
 	}
 
@@ -299,8 +315,8 @@ func (h *Handler) UploadDocument(c *gin.Context) {
 	}
 
 	// Read file content
-	content := make([]byte, header.Size)
-	if _, err := file.Read(content); err != nil {
+	content, err := io.ReadAll(file)
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read file"})
 		return
 	}
