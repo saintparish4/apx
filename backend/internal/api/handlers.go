@@ -343,6 +343,7 @@ func (h *Handler) UploadDocument(c *gin.Context) {
 }
 
 // Helper function to parse pagination parameters
+// TODO: Move to utils package
 func parsePagination(c *gin.Context) (offset, limit int) {
 	offset, _ = strconv.Atoi(c.DefaultQuery("offset", "0"))
 	limit, _ = strconv.Atoi(c.DefaultQuery("limit", "20"))
