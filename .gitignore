@@ -68,6 +68,9 @@ docker/data/
 # ============================================
 # IDE / Editor
 # ============================================
+# Cursor
+.cursor/
+
 # VSCode
 .vscode/
 !.vscode/settings.json
