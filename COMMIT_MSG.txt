@@ -1,0 +1,22 @@
+feat: add comprehensive dashboard, documentation, and demo mode features
+
+- Add interactive claim submission walkthrough with real-time progress tracking
+  - Multi-stage submission process visualization (validation, encryption, IPFS upload, blockchain submission, consensus)
+  - Detailed technical information display for each processing stage
+  - Animated consensus progress indicators for verifying claims
+  - Integration with demo mode for testing and demonstration
+
+- Implement provider dashboard with full claim management
+  - Wallet connection interface with demo mode support
+  - Claim submission form with file upload support
+  - Real-time claims tracking with status indicators
+  - Transaction history table with blockchain hash display
+  - Provider statistics dashboard (reputation score, claim counts, verification rates)
+  - Tabbed interface for Submit Claim, My Claims, and Transaction History
+
+- Add comprehensive "How It Works" documentation page
+  - Detailed explanation of healthcare claims processing problems
+  - Blockchain solution architecture overview
+  - Technical architecture breakdown (Blockchain/Solidity, Backend/Go, Frontend/Next.js)
+  - API integration examples and endpoints
+  - Navigation and call-to-action sections
