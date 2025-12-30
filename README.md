@@ -160,7 +160,7 @@ Historical claim accuracy and network participation are tracked on-chain, creati
 ### Prerequisites
 
 - Node.js 18+ and npm
-- Go 1.21+
+- Go 1.24.0+
 - Foundry (for smart contract development)
 - IPFS node (or use Infura/Pinata)
 

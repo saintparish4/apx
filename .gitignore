@@ -197,7 +197,9 @@ out/
 /broadcast/**/dry-run/
 
 # Docs
-docs/
+INTEGRATION.md
+CHANGELOG.md
+CONTRIBUTING.md
 
 # Dotenv file
 .env
